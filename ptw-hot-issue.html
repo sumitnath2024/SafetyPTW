@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Issue Permit - PTW Management System</title>
+  <link rel="stylesheet" href="css/ptw-hot-styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <img id="logoImage" src="img/logo.jpg" alt="TCG Lifesciences Logo" style="display: block; margin: 0 auto; width: 200px; height: auto;">
+    <div id="capture-section" class="container">
+      <header style="text-align: center; margin-bottom: 20px;">
+        <h1>TCG Lifesciences Pvt. Ltd.</h1>
+        <h2>ISSUE HOT WORK PERMIT</h2>
+      </header>
+      <main id="content">
+        <ol>
+          <li>This Permit is required by Sec. 37 of Factories Act 1948.</li>
+          <li>This permit shall be issued by Signature of Responsible work In-charge head / designee.</li>
+          <li>This permit is valid for the time mentioned on the permit.</li>
+          <li>This permit shall be closed after completion / non-completion of work. (At the end of the day)</li>
+          <li>Any Hot work shall be done only during daylight.</li>
+          <li>In case of fire alarm / siren, all work must immediately be stopped.</li>
+          <li>Job should be stopped in case of poor illumination level at the job site.</li>
+          <li>For open area activity, job should be stopped in case of rain and storm.</li>
+        </ol>
+
+        <form id="ptwForm">
+          <div class="form-group">
+            <label for="generalPtwNumber">General PTW Number:</label>
+            <select id="generalPtwNumber" name="generalPtwNumber" required>
+              <option value="">Select General PTW Number</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ptwNumber">PTW Number:</label>
+            <input type="text" id="ptwNumber" name="ptwNumber" readonly>
+          </div>
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+          <div class="form-group">
+            <label for="issueTimeFrom">From Time:</label>
+            <input type="time" id="issueTimeFrom" name="issueTimeFrom">
+          </div>
+          <div class="form-group">
+            <label for="issueTimeTo">To Time:</label>
+            <input type="time" id="issueTimeTo" name="issueTimeTo">
+          </div>
+          <div class="form-group">
+            <label for="requestingDepartment">Requesting Department/Section:</label>
+            <input type="text" id="requestingDepartment" name="requestingDepartment" required>
+          </div>
+          <div class="form-group">
+            <label for="jobDescription">Job Description:</label>
+            <input type="text" id="jobDescription" name="jobDescription" required>
+          </div>
+          <div class="form-group">
+            <label for="requestingPersonnel">Permit issued to (Shift / Area in charge):</label>
+            <select id="requestingPersonnel" name="requestingPersonnel" required>
+              <option value="">Select Name</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contractor">Name of Agency / Contractor:</label>
+            <select id="contractor" name="contractor" required>
+              <option value="">Select Contractor</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contractorSupervisor">Contractor Supervisor Name:</label>
+            <select id="contractorSupervisor" name="contractorSupervisor" required>
+              <option value="">Select Supervisor</option>
+            </select>
+          </div>
+
+          <!-- Dynamic Check Points -->
+          <table>
+            <thead>
+              <tr>
+                <th>Check Points (before starting the job)</th>
+                <th>Tick (√)</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1) Has the place been emptied from solvents or flammable materials?</td>
+                <td><input type="checkbox" id="emptiedSolvents" name="emptiedSolvents"></td>
+                <td><input type="text" id="emptiedSolventsRemarks" name="emptiedSolventsRemarks"></td>
+              </tr>
+              <tr>
+                <td>2) Have the drain lines been flashed with adequate water?</td>
+                <td><input type="checkbox" id="flashedWater" name="flashedWater"></td>
+                <td><input type="text" id="flashedWaterRemarks" name="flashedWaterRemarks"></td>
+              </tr>
+              <tr>
+                <td>3) Have the adjacent rooms/places been isolated?</td>
+                <td><input type="checkbox" id="isolatedRooms" name="isolatedRooms"></td>
+                <td><input type="text" id="isolatedRoomsRemarks" name="isolatedRoomsRemarks"></td>
+              </tr>
+              <tr>
+                <td>4) Has the welding/cutting team been well described the work precautions?</td>
+                <td><input type="checkbox" id="describedPrecautions" name="describedPrecautions"></td>
+                <td><input type="text" id="describedPrecautionsRemarks" name="describedPrecautionsRemarks"></td>
+              </tr>
+              <tr>
+                <td>5) Will there be a standby person during the work?</td>
+                <td><input type="checkbox" id="standbyPerson" name="standbyPerson"></td>
+                <td><input type="text" id="standbyPersonRemarks" name="standbyPersonRemarks"></td>
+              </tr>
+              <tr>
+                <td>6) Are necessary PPEs provided to the concerned workmen?</td>
+                <td><input type="checkbox" id="providedPPEs" name="providedPPEs"></td>
+                <td><input type="text" id="providedPPEsRemarks" name="providedPPEsRemarks"></td>
+              </tr>
+              <tr>
+                <td>7) Have Fire Extinguishers been kept ready?</td>
+                <td><input type="checkbox" id="fireExtinguishersReady" name="fireExtinguishersReady"></td>
+                <td><input type="text" id="fireExtinguishersReadyRemarks" name="fireExtinguishersReadyRemarks"></td>
+              </tr>
+              <tr>
+                <td>8) Has a “Man at work” sign been provided at the work place?</td>
+                <td><input type="checkbox" id="manAtWorkSign" name="manAtWorkSign"></td>
+                <td><input type="text" id="manAtWorkSignRemarks" name="manAtWorkSignRemarks"></td>
+              </tr>
+              <tr>
+                <td>9) Has it been informed to the security department?</td>
+                <td>
+                  <input type="checkbox" id="informedSecurityDept" name="informedSecurityDept">
+                  <label for="securityDeptName">Name:</label>
+                  <input type="text" id="securityDeptName" name="securityDeptName">
+                </td>
+                <td><input type="text" id="informedSecurityDeptRemarks" name="informedSecurityDeptRemarks"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Permit Issuance Section -->
+          <div class="write-up-section">
+            <p>I received and understood the safety precautions to be taken for doing the above said job and will take full care to do the job safely and I have received / carry all the Personal Protective Equipment to do the job safely.</p>
+          </div>
+
+          <div class="section permit-issuer">
+            <h2>Permit Issuance</h2>
+            <div class="form-group">
+              <label for="requesterSignatureSelect">Select Permit Requester:</label>
+              <select id="requesterSignatureSelect" name="requesterSignatureSelect" required>
+                <option value="">Select Name</option>
+              </select>
+              <label for="requesterSignature">Signature of Permit Requester:</label>
+              <canvas id="requesterSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('requesterSignatureCanvas')">Clear</button>
+            </div>
+            <div class="form-group">
+              <label for="issuerName">Permit Issuer (Logged in User):</label>
+              <input type="text" id="issuerName" name="issuerName" readonly>
+              <label for="issuerSignature">Signature of Permit Issuer:</label>
+              <canvas id="issuerSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('issuerSignatureCanvas')">Clear</button>
+            </div>
+            <div class="form-group">
+              <label for="ehsSignatureSelect">Select EHS Department Head/Designee:</label>
+              <select id="ehsSignatureSelect" name="ehsSignatureSelect" required>
+                <option value="">Select Name</option>
+              </select>
+              <label for="ehsSignature">Signature of EHS Department Head/Designee:</label>
+              <canvas id="ehsSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('ehsSignatureCanvas')">Clear</button>
+            </div>
+            <div class="form-group">
+              <label for="contractorSupervisorsignature">Contractor Supervisor Name:</label>
+              <select id="contractorSupervisorsignature" name="contractorSupervisorsignature" required>
+                <option value="">Select Supervisor</option>
+              </select>
+              <label for="contractorSupervisorSignature">Signature of Contractor Supervisor:</label>
+              <canvas id="contractorSupervisorSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('contractorSupervisorSignatureCanvas')">Clear</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit">Submit PTW</button>
+          <button type="button" onclick="location.href='ptw-issue-dashboard.html'">Back</button>
+        </div>
+      </form>
+    </main>
+
+    <div id="loadingOverlay">
+      <p>Please wait, saving your document...</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/firebase-config.js"></script> <!-- Ensure this is loaded first -->
+    <script src="js/populateForm_issue.js"></script>
+    <script src="js/signatureCanvas_issue.js"></script>
+    <script src="js/ptw-hot-issue.js"></script>
+  </div>
+</body>
+
+</html>

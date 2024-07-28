@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extend Permit - PTW Management System</title>
+    <link rel="stylesheet" href="css/ptw-confined-styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container" id="mainContainer">
+        <img id="logoImage" src="img/logo.jpg" alt="TCG Lifesciences Logo" style="display:block; margin: 0 auto; width: 200px; height: auto;">
+        
+        <div class="sel_section" id="selectPermitSection">
+            <h2 id="selectPermitTitle">Select Permit</h2>
+            <div class="form-group" id="ptwNumberGroup">
+                <label for="ptwNumber">PTW Number:</label>
+                <select id="ptwNumber" name="ptwNumber" required>
+                    <option value="">Select Permit Number</option>
+                    <!-- Options will be dynamically populated -->
+                </select>
+            </div>
+        </div>
+
+        <div id="captureSection" class="container">
+            <header id="headerSection" style="text-align: center; margin-bottom: 20px;">
+                <h1 id="companyTitle">TCG Lifesciences Pvt. Ltd.</h1>
+                <h2 id="permitTitle">EXTEND CONFINED SPACE WORK PERMIT</h2>
+            </header>
+
+            <main id="content">
+                <ol id="permitInstructions">
+                    <li>This permit must be completed and certified by the responsible person of performing/permitting before any person is allowed to enter into a confined space as required by Section 36, 36A & 37 of Factories Act - 1948.</li>
+                    <li>This permit must be displayed near the entrance of confined space during the work.</li>
+                    <li>Site conditions must be checked personally.</li>
+                    <li>This permit shall be issued by Responsible work In-charge head / designee.</li>
+                    <li>This permit is valid for the time mentioned on the permit.</li>
+                    <li>This permit shall be closed after completion / non-completion of work. (At the end of the day)</li>
+                </ol>
+
+                <form id="ptwForm">
+                    <!-- Issued Permit Section -->
+                    <div id="issuedPermitSection" class="bordered-section hidden">
+                        <h2 id="issuedPermitTitle">Issued Permit Details</h2>
+                        <div class="form-group" id="generalPtwNumberGroup">
+                            <label for="generalPtwNumber">General PTW Number:</label>
+                            <input type="text" id="generalPtwNumber" name="generalPtwNumber" readonly>
+                        </div>
+                        <div class="form-group" id="issuedPtwNumberGroup">
+                            <label for="issuedPtwNumber">PTW Number:</label>
+                            <input type="text" id="issuedPtwNumber" name="issuedPtwNumber" readonly>
+                        </div>
+                        <div class="form-group" id="issuedDateGroup">
+                            <label for="issuedDate">Date:</label>
+                            <input type="date" id="issuedDate" name="issuedDate" readonly>
+                        </div>
+                        <div class="form-group" id="issuedTimeFromGroup">
+                            <label for="issuedTimeFrom">Issued Time From:</label>
+                            <input type="time" id="issuedTimeFrom" name="issuedTimeFrom" readonly>
+                        </div>
+                        <div class="form-group" id="issuedTimeToGroup">
+                            <label for="issuedTimeTo">Issued Time To:</label>
+                            <input type="time" id="issuedTimeTo" name="issuedTimeTo" readonly>
+                        </div>
+                        <div class="form-group" id="issuedRequestingDepartmentGroup">
+                            <label for="issuedRequestingDepartment">Requesting Department/Section:</label>
+                            <input type="text" id="issuedRequestingDepartment" name="issuedRequestingDepartment" readonly>
+                        </div>
+                        <div class="form-group" id="jobDescriptionGroup">
+                            <label for="jobDescription">Job Description</label>
+                            <input type="text" id="jobDescription" name="jobDescription" required>
+                        </div>
+                        <div class="form-group" id="issuedRequestingPersonnelGroup">
+                            <label for="issuedRequestingPersonnel">Permit issued to (Shift / Area in charge):</label>
+                            <input type="text" id="issuedRequestingPersonnel" name="issuedRequestingPersonnel" readonly>
+                        </div>
+                        <div class="form-group" id="issuedContractorGroup">
+                            <label for="issuedContractor">Name of Agency / Contractor:</label>
+                            <input type="text" id="issuedContractor" name="issuedContractor" readonly>
+                        </div>
+                        <div class="form-group" id="issuedContractorSupervisorGroup">
+                            <label for="issuedContractorSupervisor">Contractor Supervisor Name:</label>
+                            <input type="text" id="issuedContractorSupervisor" name="issuedContractorSupervisor" readonly>
+                        </div>
+                        <div class="form-group" id="issuedIssuerNameGroup">
+                            <label for="issuedIssuerName">Permit Issuer (Logged in User):</label>
+                            <input type="text" id="issuedIssuerName" name="issuedIssuerName" readonly>
+                        </div>
+                        <button type="button" class="btn-extend" id="extendPermitBtn">Extend</button>
+                    </div>
+
+                    <!-- Extension Section -->
+                    <div id="extensionSection" class="bordered-section hidden">
+                        <h2 id="extensionTitle">Extension Details</h2>
+                        <div class="form-group" id="extensionNumberGroup">
+                            <label for="extensionNumber">Extension Number:</label>
+                            <input type="text" id="extensionNumber" name="extensionNumber" readonly>
+                        </div>
+                        <div class="form-group" id="extensionDateGroup">
+                            <label for="extensionDate">Extended on Date:</label>
+                            <input type="date" id="extensionDate" name="extensionDate">
+                        </div>
+                        <div class="form-group" id="extensionTimeFromGroup">
+                            <label for="extensionTimeFrom">From Time:</label>
+                            <input type="time" id="extensionTimeFrom" name="extensionTimeFrom">
+                        </div>
+                        <div class="form-group" id="extensionTimeToGroup">
+                            <label for="extensionTimeTo">To Time:</label>
+                            <input type="time" id="extensionTimeTo" name="extensionTimeTo">
+                        </div>
+
+                        <!-- Dynamic Check Points -->
+                        <table id="checkPointsTable">
+                            <thead>
+                                <tr>
+                                    <th>Check Points (before starting the job)</th>
+                                    <th>Tick (√)</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="checkPoint1">
+                                    <td>1. Equipment is drained / flushed and free from material, verified top cover of the reactors.</td>
+                                    <td><input type="checkbox" id="drainedFlushed" name="drainedFlushed"></td>
+                                    <td><input type="text" id="drainedFlushedRemarks" name="drainedFlushedRemarks"></td>
+                                </tr>
+                                <tr id="checkPoint2">
+                                    <td>2. Air purging, steaming carried out, vessel is cleaned & free from flammable / toxic material.</td>
+                                    <td><input type="checkbox" id="airPurging" name="airPurging"></td>
+                                    <td><input type="text" id="airPurgingRemarks" name="airPurgingRemarks"></td>
+                                </tr>
+                                <tr id="checkPoint3">
+                                    <td>3. Equipment / vessel isolated by blinding, disconnected.</td>
+                                    <td><input type="checkbox" id="equipmentIsolated" name="equipmentIsolated"></td>
+                                    <td><input type="text" id="equipmentIsolatedRemarks" name="equipmentIsolatedRemarks"></td>
+                                </tr>
+                                <tr id="checkPoint4">
+                                    <td>4. Has work area been made safe, including access too.</td>
+                                    <td><input type="checkbox" id="workAreaSafe" name="workAreaSafe"></td>
+                                    <td><input type="text" id="workAreaSafeRemarks" name="workAreaSafeRemarks"></td>
+                                </tr>
+                                <tr id="checkPoint5">
+                                    <td>5. Equipment is isolated from drive by disconnecting electrical motor or removing belt followed by LOTO.</td>
+                                    <td><input type="checkbox" id="equipmentIsolatedDrive" name="equipmentIsolatedDrive"></td>
+                                    <td><input type="text" id="equipmentIsolatedDriveRemarks" name="equipmentIsolatedDriveRemarks"></td>
+                                </tr>
+                                <tr id="checkPoint6">
+                                    <td>6. 24V DC lamp for lighting the vessel is provided.</td>
+                                    <td><input type="checkbox" id="lightingProvided" name="lightingProvided"></td>
+                                    <td><input type="text" id="lightingProvidedRemarks" name="lightingProvidedRemarks"></td>
+                                </tr>
+                                <tr id="checkPoint7">
+                                    <td>7. Person involved is fully instructed regarding possible hazards.</td>
+                                    <td><input type="checkbox" id="personInstructed" name="personInstructed"></td>
+                                    <td><input type="text" id="personInstructedRemarks" name="personInstructedRemarks"></td>
+                                </tr>
+                                <tr id="checkPoint8">
+                                    <td>8. Ventilation is ensured with exhaust or forced fan.</td>
+                                    <td><input type="checkbox" id="ventilationEnsured" name="ventilationEnsured"></td>
+                                    <td><input type="text" id="ventilationEnsuredRemarks" name="ventilationEnsuredRemarks"></td>
+                                </tr>
+                                <tr id="checkPoint9">
+                                    <td>9. An attendant deployed outside for communication with the inside person's unless the job is completed.</td>
+                                    <td><input type="checkbox" id="attendantDeployed" name="attendantDeployed"></td>
+                                    <td><input type="text" id="attendantDeployedRemarks" name="attendantDeployedRemarks"></td>
+                                </tr>
+                                <tr id="checkPoint10">
+                                    <td>10. Other precautions if any:</td>
+                                    <td><textarea id="otherPrecautions" name="otherPrecautions" rows="3"></textarea></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Air Monitoring Results -->
+                        <h2 id="airMonitoringTitle">Air Monitoring Results Prior to Entry</h2>
+                        <table id="airMonitoringTable">
+                            <tr id="monitorTypeRow">
+                                <td>Monitor type:</td>
+                                <td><input type="text" id="monitorType" name="monitorType"></td>
+                                <td>Serial No.:</td>
+                                <td><input type="text" id="serialNumber" name="serialNumber"></td>
+                            </tr>
+                            <tr id="oxygenRow">
+                                <td>Oxygen:</td>
+                                <td><input type="text" id="oxygen" name="oxygen"></td>
+                                <td>%LEL:</td>
+                                <td><input type="text" id="lel" name="lel"></td>
+                            </tr>
+                            <tr id="calibrationRow">
+                                <td>Calibration performed? Initials:</td>
+                                <td colspan="3"><input type="text" id="calibrationInitials" name="calibrationInitials"></td>
+                            </tr>
+                            <tr id="alarmConditionRow">
+                                <td>Alarm Condition?</td>
+                                <td colspan="3"><input type="text" id="alarmCondition" name="alarmCondition"></td>
+                            </tr>
+                            <tr id="monitoringSignRow">
+                                <td>Monitoring performed by (sign):</td>
+                                <td><input type="text" id="monitoringSign" name="monitoringSign"></td>
+                                <td>Date:</td>
+                                <td><input type="date" id="monitoringDate" name="monitoringDate"></td>
+                            </tr>
+                        </table>
+
+                        <!-- Certification Section -->
+                        <div class="certification-section" id="certificationSection">
+                            <p id="certificationText">We certify that the above measures have been taken and the area equipment is free from combustible, flammable, toxic, and dangerous fumes and that it is safe to carry out the work and concerned persons have been instructed accordingly. Site conditions have been checked by me personally.</p>
+                        </div>
+
+                        <!-- Signatures Section -->
+                        <div class="form-group" id="extensionRequesterSignatureGroup">
+                            <label for="extensionRequesterSignatureSelect">Select Permit Requester:</label>
+                            <select id="extensionRequesterSignatureSelect" name="extensionRequesterSignatureSelect" required>
+                                <option value="">Select Name</option>
+                            </select>
+                            <label for="extensionRequesterSignature">Signature of Permit Requester:</label>
+                            <canvas id="extensionRequesterSignatureCanvas" class="signature-canvas"></canvas>
+                            <button type="button" class="btn-clear" onclick="clearCanvas('extensionRequesterSignatureCanvas')">Clear</button>
+                        </div>
+                        <div class="form-group" id="extensionIssuerSignatureGroup">
+                            <label for="extensionIssuerName">Permit Issuer (Logged in User):</label>
+                            <input type="text" id="extensionIssuerName" name="extensionIssuerName" readonly>
+                            <label for="extensionIssuerSignature">Signature of Permit Issuer:</label>
+                            <canvas id="extensionIssuerSignatureCanvas" class="signature-canvas"></canvas>
+                            <button type="button" class="btn-clear" onclick="clearCanvas('extensionIssuerSignatureCanvas')">Clear</button>
+                        </div>
+                        <div class="form-group" id="extensionEhsSignatureGroup">
+                            <label for="extensionEhsSignatureSelect">Select EHS Department Head/Designee:</label>
+                            <select id="extensionEhsSignatureSelect" name="extensionEhsSignatureSelect" required>
+                                <option value="">Select Name</option>
+                            </select>
+                            <label for="extensionEhsSignature">Signature of EHS Department Head/Designee:</label>
+                            <canvas id="extensionEhsSignatureCanvas" class="signature-canvas"></canvas>
+                            <button type="button" class="btn-clear" onclick="clearCanvas('extensionEhsSignatureCanvas')">Clear</button>
+                        </div>
+                        <div class="form-group" id="extensionContractorSupervisorSignatureGroup">
+                            <label for="extensionContractorSupervisorSelect">Select Contractor Supervisor:</label>
+                            <select id="extensionContractorSupervisorSelect" name="extensionContractorSupervisorSelect" required>
+                                <option value="">Select Supervisor</option>
+                            </select>
+                            <label for="extensionContractorSupervisorSignature">Signature of Contractor Supervisor:</label>
+                            <canvas id="extensionContractorSupervisorSignatureCanvas" class="signature-canvas"></canvas>
+                            <button type="button" class="btn-clear" onclick="clearCanvas('extensionContractorSupervisorSignatureCanvas')">Clear</button>
+                        </div>
+                    </div>
+		</div>
+                    <!-- Form Buttons -->
+                    <div class="form-group" id="formButtonsGroup">
+                        <button type="submit" id="submitBtn">Submit PTW</button>
+                        <button type="button" id="backBtn" onclick="location.href='ptw-extension-dashboard.html'">Back</button>
+                    </div>
+                </form>
+            </main>
+        
+    
+        <div id="loadingOverlay">
+            <p id="loadingText">Please wait, saving your document...</p>
+        </div>
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="js/firebase-config.js"></script>
+        <script src="js/populateForm_extension.js"></script>
+        <script src="js/signatureCanvas_extension.js"></script>
+        <script src="js/ptw-confined-extension.js"></script>
+    </body>
+</html>

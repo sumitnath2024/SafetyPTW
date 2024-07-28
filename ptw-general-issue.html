@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Issue General Work Permit - PTW Management System</title>
+  <link rel="stylesheet" href="css/ptw-general-styles.css">
+</head>
+<body>
+  <div class="container" id="mainContainer">
+    <!-- Logo -->
+    <img id="logoImage" src="img/logo.jpg" alt="TCG Lifesciences Logo" style="display:block; margin: 0 auto; width: 200px; height: auto;">
+    
+    <!-- Main Content -->
+    <div id="captureSection" class="container">
+      <header style="text-align: center; margin-bottom: 20px;">
+        <h1 id="companyName">TCG Lifesciences Pvt. Ltd.</h1>
+        <h2 id="permitTitle">ISSUE GENERAL WORK PERMIT</h2>
+      </header>
+      
+      <main id="content">
+        <!-- Permit Instructions -->
+        <ol id="permitInstructions">
+          <li>This permit is required by W.B.F.R., 1968 Rule 64, Sch XVII, Part-II, Para 20.</li>
+          <li>This permit shall be issued by Responsible work In-charge head / designee. This permit is valid for the time mentioned on the permit.</li>
+          <li>This permit shall be closed after completion / non-completion of work. (At the end of the day)</li>
+          <li>In case of fire alarm / siren, all work must immediately be stopped.</li>
+          <li>Job should be stopped in case of poor illumination level at the job site.</li>
+          <li>For open area activity, job should be stopped in case of rain and storm.</li>
+        </ol>
+        
+        <!-- Permit Form -->
+        <form id="ptwForm">
+          <!-- General Information Section -->
+          <div id="generalInfoSection" class="section">
+            <h2>General Information</h2>
+            <div class="form-group">
+              <label for="ptwNumber">PTW Number:</label>
+              <input type="text" id="ptwNumber" name="ptwNumber" readonly>
+            </div>
+            <div class="form-group">
+              <label for="date">Date:</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+              <label for="issueTimeFrom">From Time:</label>
+              <input type="time" id="issueTimeFrom" name="issueTimeFrom">
+            </div>
+            <div class="form-group">
+              <label for="issueTimeTo">To Time:</label>
+              <input type="time" id="issueTimeTo" name="issueTimeTo">
+            </div>
+            <div class="form-group">
+              <label for="requestingDepartment">Requesting Department/Section:</label>
+              <input type="text" id="requestingDepartment" name="requestingDepartment" required>
+            </div>
+            <div class="form-group">
+              <label for="jobDescription">Job Description:</label>
+              <input type="text" id="jobDescription" name="jobDescription" required>
+            </div>
+            <div class="form-group">
+              <label for="requestingPersonnel">Permit issued to (Shift / Area in charge):</label>
+              <select id="requestingPersonnel" name="requestingPersonnel" required>
+                <option value="">Select Name</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contractor">Name of Agency / Contractor:</label>
+              <select id="contractor" name="contractor" required>
+                <option value="">Select Contractor</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contractorSupervisor">Contractor Supervisor Name:</label>
+              <select id="contractorSupervisor" name="contractorSupervisor" required>
+                <option value="">Select Supervisor</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Check Points Section -->
+          <div id="dynamicCheckPoints">
+            <h3>Check Points (Before starting the job)</h3>
+            <div class="form-group">
+              <label for="cleanedWashed">1. The area of work is cleaned / washed:</label>
+              <select id="cleanedWashed" name="cleanedWashed" required>
+                <option value="no">NO</option>
+                <option value="yes">YES</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="electricalConnection">2. The area checked for electrical connection:</label>
+              <select id="electricalConnection" name="electricalConnection" required>
+                <option value="no">NO</option>
+                <option value="yes">YES</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fusesRemoved">3. The fuses of equipment / instrument isolated / removed:</label>
+              <select id="fusesRemoved" name="fusesRemoved" required>
+                <option value="no">NO</option>
+                <option value="yes">YES</option>
+              </select>
+              <label for="electricianSign">Name of electrician:</label>
+              <input type="text" id="electricianSign" name="electricianSign">
+            </div>
+            <div class="form-group">
+              <label for="equipmentIsolated">4. Equipment effectively isolated by removal / blanking:</label>
+              <select id="equipmentIsolated" name="equipmentIsolated" required>
+                <option value="no">NO</option>
+                <option value="yes">YES</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="equipmentCleaned">5. Equipment properly cleaned or flushed:</label>
+              <select id="equipmentCleaned" name="equipmentCleaned" required>
+                <option value="no">NO</option>
+                <option value="yes">YES</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="jobAreaCondoning">6. The job area condoning off is required:</label>
+              <select id="jobAreaCondoning" name="jobAreaCondoning" required>
+                <option value="no">NO</option>
+                <option value="yes">YES</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cautionaryNotice">7. Cautionary notice “Man at Work” to be displayed near the job site:</label>
+              <select id="cautionaryNotice" name="cautionaryNotice" required>
+                <option value="no">NO</option>
+                <option value="yes">YES</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="staffInformed">8. Production / Engineering staff to be informed about the need for the restriction of movement of the contractual workers or employees:</label>
+              <select id="staffInformed" name="staffInformed" required>
+                <option value="no">NO</option>
+                <option value="yes">YES</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="scrapRemoved">9. Removal of scrap and debris shall be done in closed condition like using polybag etc. To avoid dust contamination through predetermined pathway:</label>
+              <select id="scrapRemoved" name="scrapRemoved" required>
+                <option value="no">NO</option>
+                <option value="yes">YES</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="securityInformed">10. Has informed to security dept?</label>
+              <select id="securityInformed" name="securityInformed" required>
+                <option value="no">NO</option>
+                <option value="yes">YES</option>
+              </select>
+              <label for="securityName">Name of Security Person:</label>
+              <input type="text" id="securityName" name="securityName">
+            </div>
+          </div>
+
+          <!-- Specific Requirements -->
+          <div class="form-group">
+            <label for="specificRequirements">Any other specific requirements/precautions:</label>
+            <textarea id="specificRequirements" name="specificRequirements" rows="3"></textarea>
+          </div>
+
+          <!-- Equipment Used Table -->
+          <div class="form-group">
+            <label for="equipmentUsed">Tick (√) the following used:</label>
+            <table id="equipmentUsedTable">
+              <tr>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Helmet"> i) Helmet</label></td>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Full body Harness"> ii) Full body Harness</label></td>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Face Shield"> iii) Face Shield</label></td>
+              </tr>
+              <tr>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Safety shoe"> iv) Safety shoe</label></td>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Gum boot"> v) Gum boot</label></td>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Ear plug"> vi) Ear plug</label></td>
+              </tr>
+              <tr>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Safety Goggles"> vii) Safety Goggles</label></td>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Drill Machine"> viii) Drill Machine</label></td>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Drilling machine Pneumatic"> ix) Drilling machine Pneumatic</label></td>
+              </tr>
+              <tr>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Hand Gloves"> x) Hand Gloves</label></td>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Nose Mask"> xi) Nose Mask</label></td>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Ladder"> xii) Ladder</label></td>
+              </tr>
+              <tr>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Breathing Apparatus"> xiii) Breathing Apparatus</label></td>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Gas cutting"> xiv) Gas cutting</label></td>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Hand tools"> xv) Hand tools</label></td>
+              </tr>
+              <tr>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Brass Hammer/Chisel"> xvi) Brass Hammer/Chisel</label></td>
+                <td><label><input type="checkbox" name="equipmentUsed" value="Any other"> xvii) Any other</label></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Permit Issuance Section -->
+          <div id="permitIssuanceSection" class="section permit-issuer">
+            <h2>Permit Issuance</h2>
+            
+            <!-- Camera and Image Capture Section -->
+            <div class="form-group">
+              <label for="camera">Take Picture:</label>
+              <button type="button" id="cameraButton" onclick="toggleCamera()">Open Camera</button>
+              <button type="button" id="switchCameraButton" onclick="switchCamera()" style="display: none;">Switch Camera</button>
+              <video id="video" width="320" height="240" autoplay style="display: none;" data-use-back-camera="true"></video>
+              <button type="button" id="captureButton" onclick="captureImage()" style="display: none;">Capture</button>
+              <canvas id="canvas" width="320" height="240" class="responsive-canvas" style="display: none;"></canvas>
+              <img id="capturedImage" class="responsive-image" src="" alt="Captured Image" style="display: none;">
+            </div>
+            
+            <!-- Write Up Section -->
+            <div class="write-up-section">
+              <p>I received and understood the safety precautions to be taken for doing the above said job and will take full care to do the job safely and I have received / carry all the Personal Protective Equipment to do the job safely.</p>
+            </div>
+
+            <!-- Signatures Section -->
+            <div class="form-group">
+              <label for="requesterSignatureSelect">Select Permit Requester:</label>
+              <select id="requesterSignatureSelect" name="requesterSignatureSelect" required>
+                <option value="">Select Name</option>
+              </select>
+              <label for="requesterSignature">Signature of Permit Requester:</label>
+              <canvas id="requesterSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('requesterSignatureCanvas')">Clear</button>
+            </div>
+            <div class="form-group">
+              <label for="issuerName">Permit Issuer (Logged in User):</label>
+              <input type="text" id="issuerName" name="issuerName" readonly>
+              <label for="issuerSignature">Signature of Permit Issuer:</label>
+              <canvas id="issuerSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('issuerSignatureCanvas')">Clear</button>
+            </div>
+            <div class="form-group">
+              <label for="ehsSignatureSelect">Select EHS Department Head/Designee:</label>
+              <select id="ehsSignatureSelect" name="ehsSignatureSelect" required>
+                <option value="">Select Name</option>
+              </select>
+              <label for="ehsSignature">Signature of EHS Department Head/Designee:</label>
+              <canvas id="ehsSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('ehsSignatureCanvas')">Clear</button>
+            </div>
+            <div class="form-group">
+              <label for="contractorSupervisorsignature">Select Contractor Supervisor:</label>
+              <select id="contractorSupervisorsignature" name="contractorSupervisorsignature" required>
+                <option value="">Select Supervisor</option>
+              </select>
+              <label for="contractorSupervisorSignature">Signature of Contractor Supervisor:</label>
+              <canvas id="contractorSupervisorSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('contractorSupervisorSignatureCanvas')">Clear</button>
+            </div>
+          </div>
+	</div>
+          <!-- Form Buttons -->
+          <button type="submit" id="submitButton">Submit PTW</button>
+          <button type="button" id="backButton" onclick="location.href='ptw-issue-dashboard.html'">Back</button>
+        </form>
+      </main>   
+    
+    
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay">
+      <p>Please wait, saving your document...</p>
+    </div>
+  
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/populateForm_issue.js"></script>
+  <script src="js/signatureCanvas_issue.js"></script>
+  <script src="js/camera.js"></script>
+  <script src="js/ptw-general-issue.js"></script>
+</body>
+</html>

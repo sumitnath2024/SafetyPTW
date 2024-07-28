@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extension PTW Dashboard - PTW Management System</title>
+    <link rel="stylesheet" href="css/extension-dashboard-styles.css"> <!-- Reusing the same CSS file -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Extend Permit To Work</h1>               
+            </div>
+        </header>
+        <main>
+            <div class="card general" onclick="window.location.href='ptw-general-extension.html'">
+                <h2>General PTW</h2>
+                <p>Click to extend a General PTW</p>
+            </div>
+            <div class="card height" onclick="window.location.href='ptw-height-extension.html'">
+                <h2>Height PTW</h2>
+                <p>Click to extend a Height PTW</p>
+            </div>
+            <div class="card confined" onclick="window.location.href='ptw-confined-extension.html'">
+                <h2>Confined Space PTW</h2>
+                <p>Click to extend a Confined Space PTW</p>
+            </div>
+            <div class="card electrical" onclick="window.location.href='ptw-electrical-extension.html'">
+                <h2>Electrical PTW</h2>
+                <p>Click to extend an Electrical PTW</p>
+            </div>
+            <div class="card hot" onclick="window.location.href='ptw-hot-extension.html'">
+                <h2>Hot Work PTW</h2>
+                <p>Click to extend a Hot Work PTW</p>
+            </div>
+            <div class="card excavation" onclick="window.location.href='ptw-excavation-extension.html'">
+                <h2>Excavation PTW</h2>
+                <p>Click to extend an Excavation PTW</p>
+            </div>
+            <div class="card logout" onclick="logout()">
+                <h2>Logout</h2>
+                <p>Click to logout</p>
+            </div>
+	    <div class="card back" onclick="window.location.href='dashboard.html'">
+    	        <h2>Back</h2>
+    		<p>Click to go Back</p>
+	    </div>
+        </main>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <script src="js/firebase-config.js"></script> <!-- Ensure this is loaded first -->
+    <script>
+        function loadPage(url) {
+            document.getElementById('contentFrame').src = url;
+            document.getElementById('navMenu').classList.remove('open');
+        }
+
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('open');
+        }
+
+        async function getUserName() {
+            const userUID = localStorage.getItem('userUID');
+            if (userUID) {
+                const userDoc = await firebase.firestore().collection('users').doc(userUID).get();
+                if (userDoc.exists) {
+                    return userDoc.data().fullName;
+                }
+            }
+            return 'Unknown User';
+        }
+
+        async function logout() {
+            await firebase.auth().signOut();
+            localStorage.removeItem('userUID');
+            localStorage.removeItem('rememberMe'); // Add this line
+            localStorage.removeItem('email'); // Add this line
+            localStorage.removeItem('password'); // Add this line
+            window.location.href = 'login.html';
+        }
+       
+    </script>
+</body>
+</html>

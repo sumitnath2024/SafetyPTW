@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0; /* Adjust background color as needed */
+    color: #fff;
+}
+
+.header-image {
+    width: 100%;
+    height: 200px; /* Adjust height as needed */
+    background: url('../img/background.jpg') no-repeat center center;
+    background-size: cover;
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center; /* Center align text within the container */
+}
+
+.header-content {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Add margin to separate it from the cards */
+}
+
+.header-content h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card {
+    width: 300px;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.2s;
+    cursor: pointer;
+    color: #fff;
+    opacity: 0.9;
+}
+
+.card.general {
+    background-color: rgba(0, 128, 0, 0.8); /* Dark Green */
+}
+
+.card.height {
+    background-color: rgba(0, 0, 255, 0.8); /* Blue */
+}
+
+.card.confined {
+    background-color: rgba(255, 0, 0, 0.8); /* Red */
+}
+
+.card.electrical {
+    background-color: rgba(128, 0, 128, 0.8); /* Purple */
+}
+
+.card.hot {
+    background-color: rgba(255, 193, 7, 0.8); /* Amber */
+}
+
+.card.excavation {
+    background-color: rgba(23, 162, 184, 0.8); /* Cyan */
+}
+
+.card.logout {
+    background-color: rgba(96, 125, 139, 0.8); /* Blue Grey */
+}
+
+.card.back {
+    background-color: rgba(64, 224, 208, 0.8); /* Turquoise */
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card h2 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+}
+
+.card p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+        margin: 10px 0;
+    }
+}

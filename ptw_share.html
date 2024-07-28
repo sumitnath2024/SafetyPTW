@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PTW Share</title>
+  <link rel="stylesheet" href="css/ptw-view.css">
+</head>
+<body>
+  <div class="container">
+    <h1>PTW Share</h1>
+
+    <div class="field">
+      <label>Image Link:</label>
+      <span id="imageLink"></span>
+      <button id="copyButton">Copy Link</button>
+    </div>
+
+    <button id="shareButton" class="button">Share in WhatsApp</button>
+    <button id="backButton" class="button">Back to Dashboard</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const imageUrl = urlParams.get('imageUrl');
+
+      document.getElementById('imageLink').textContent = imageUrl;
+
+      document.getElementById('copyButton').addEventListener('click', function() {
+        navigator.clipboard.writeText(imageUrl).then(() => {
+          alert('Link copied to clipboard');
+        }).catch(err => {
+          console.error('Error copying link: ', err);
+        });
+      });
+
+      document.getElementById('shareButton').addEventListener('click', function() {
+        const message = `Here is the PTW form image: ${imageUrl}`;
+        const whatsappLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+        window.open(whatsappLink, '_blank');
+      });
+
+      document.getElementById('backButton').addEventListener('click', function() {
+        window.location.href = 'dashboard.html';
+      });
+    });
+  </script>
+</body>
+</html>

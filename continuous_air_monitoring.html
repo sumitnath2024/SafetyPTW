@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Continuous Air Monitoring - PTW Management System</title>
+  <link rel="stylesheet" href="css/ptw-confined-styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <img id="logoImage" src="img/logo.jpg" alt="TCG Lifesciences Logo" style="display:block; margin: 0 auto; width: 200px; height: auto;">
+    <div id="capture-section" class="container">
+      <header style="text-align: center; margin-bottom: 20px;">
+        <h1>TCG Lifesciences Pvt. Ltd.</h1>
+        <h2 style="text-align: center;">Continuous Air Monitoring Results</h2>
+      </header>
+      <main id="content">
+        <form id="airMonitoringForm">
+          <div class="form-group">
+            <label for="ptwNumber">PTW Number:</label>
+            <select id="ptwNumber" name="ptwNumber" required>
+              <option value="">Select PTW Number</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="issuerName">Monitoring Person:</label>
+            <input type="text" id="issuerName" name="issuerName" readonly>
+          </div>
+          <h2>Continuous Air Monitoring Results</h2>
+          <table id="airMonitoringTable" style="display:none;">
+            <thead>
+              <tr>
+                <th>Sl. No.</th>
+                <th>Time</th>
+                <th>Monitoring Person</th>
+                <th>Date</th>
+                <th>Oxygen (%)</th>
+                <th>LEL (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rows will be dynamically added here -->
+            </tbody>
+          </table>
+          <button type="button" onclick="addRow()">Add Row</button>
+          <button type="submit">Submit Readings</button>
+          <button type="button" onclick="location.href='dashboard.html'">Back</button>
+        </form>
+      </main>
+    </div>
+  </div>
+  <div id="loadingOverlay">
+    <p>Please wait, saving your document...</p>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/populateForm_issue.js"></script>
+  <script src="js/continuous_air_monitoring.js"></script>
+</body>
+</html>

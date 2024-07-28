@@ -1,0 +1,173 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  background: #fcba03;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+form .form-group {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input, form textarea, form select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+form h3 {
+  margin-top: 20px;
+  color: #4CAF50;
+}
+
+.signature-canvas {
+  border: 1px solid #ccc;
+  display: block;
+  margin: 10px 0;
+}
+
+button {
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #45a049;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table th {
+  background-color: #4CAF50;
+  color: white;
+  text-align: left;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table td {
+  text-align: left;
+}
+
+/* Button Styling */
+button.edit-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+button.edit-btn:hover {
+  background: #45a049;
+}
+
+button.delete-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button.delete-btn:hover {
+  background: #da190b;
+}
+.form-group {
+      margin-bottom: 1em;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5em;
+    }
+    .form-group input, .form-group select, .form-group canvas {
+      width: 100%;
+      padding: 0.5em;
+      box-sizing: border-box;
+    }
+    .signature-canvas {
+      border: 1px solid #ccc;
+      height: 150px;
+    }
+    button {
+      margin-top: 0.5em;
+    }
+    .btn-clear {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      cursor: pointer;
+    }
+#dynamicCheckPoints {
+      background-color: #fcba03;
+      padding: 1em;
+      border-radius: 8px;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+    }
+    h3 {
+      color: #333;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+    }
+    .bordered-section {
+      border: 1px solid #ccc;
+      padding: 1em;
+      border-radius: 8px;
+      margin-bottom: 1em;
+    }
+    .equipment-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .equipment-list input {
+      margin-right: 0.5em;
+      margin-bottom: 0.5em;
+    }
+.link {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;

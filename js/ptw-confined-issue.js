@@ -1,0 +1,216 @@
+// Function to populate General PTW Number select box
+async function populateGeneralPTWNumberSelect() {
+  const ptwNumberSelect = document.getElementById('generalPtwNumber');
+
+  try {
+    // Fetch PTW records with status 'Open' or 'Extended'
+    const querySnapshot = await db.collection('General PTW Issue')
+      .where('status', 'in', ['Open', 'Extended'])
+      .get();
+
+    querySnapshot.forEach(doc => {
+      const ptwData = doc.data();
+      const option = document.createElement('option');
+      option.value = ptwData.ptwNumber; // Use PTW number as the value
+      option.textContent = ptwData.ptwNumber;
+      ptwNumberSelect.appendChild(option);
+    });
+  } catch (error) {
+    console.error('Error fetching PTW numbers: ', error);
+  }
+}
+
+//*******************************************************************************************************************
+
+
+// Function to auto-generate Confined Space PTW Number
+async function generateConfinedSpacePTWNumber() {
+  try {
+    console.log('Generating Confined Space PTW Number');
+    const generalPtwNumberSelect = document.getElementById('generalPtwNumber');
+    const selectedGeneralPTWNumber = generalPtwNumberSelect.value;
+
+    if (!selectedGeneralPTWNumber) {
+      console.error('No General PTW Number selected');
+      alert('No General PTW Number selected');
+      return;
+    }
+
+    console.log(`Selected General PTW Number: ${selectedGeneralPTWNumber}`);
+
+    // Reference to the collection
+    const ptwRef = db.collection('Confined Space PTW Issue');
+
+    // Query to get the PTW documents with the selected general PTW number and "-CS-"
+    const snapshot = await ptwRef.where('ptwNumber', '>=', `${selectedGeneralPTWNumber}-CS-`)
+                                 .where('ptwNumber', '<', `${selectedGeneralPTWNumber}-CT`)
+                                 .orderBy('ptwNumber', 'desc')
+                                 .get();
+    
+    console.log('Query executed, processing results');
+
+    let newPTWNumber = `${selectedGeneralPTWNumber}-CS-1`; // Default if no documents found
+
+    if (!snapshot.empty) {
+      let highestNumber = 0;
+      snapshot.forEach(doc => {
+        const ptwNumberParts = doc.data().ptwNumber.split('-CS-');
+        if (ptwNumberParts.length === 2) {
+          const numberPart = parseInt(ptwNumberParts[1]);
+          if (!isNaN(numberPart) && numberPart > highestNumber) {
+            highestNumber = numberPart;
+          }
+        }
+      });
+      newPTWNumber = `${selectedGeneralPTWNumber}-CS-${highestNumber + 1}`; // Generate new PTW number
+    }
+
+    console.log(`Generated new PTW Number: ${newPTWNumber}`);
+
+    const ptwNumberElement = document.getElementById('ptwNumber');
+    if (ptwNumberElement) {
+      ptwNumberElement.value = newPTWNumber; // Set the new PTW number
+      ptwNumberElement.parentElement.style.display = 'block'; // Show the PTW Number field
+      console.log('New PTW Number set in the input field');
+    }
+  } catch (error) {
+    console.error('Error fetching PTW numbers: ', error);
+    alert('Error fetching Confined Space PTW Numbers: ' + error.message);
+  }
+}
+
+//*******************************************************************************************************************
+
+function showLoading() {
+  document.getElementById('loadingOverlay').style.display = 'flex';
+}
+
+function hideLoading() {
+  document.getElementById('loadingOverlay').style.display = 'none';
+}
+
+//*******************************************************************************************************************
+
+
+async function saveConfinedSpacePTWFormData(event) {
+  event.preventDefault();
+
+  if (!confirm('Do you want to generate the Confined Space PTW?')) {
+    return;
+  }
+
+  const ptwForm = document.getElementById('ptwForm');
+  if (!ptwForm) {
+    console.error('Form element not found');
+    alert('Form element not found');
+    return;
+  }
+
+  showLoading();
+
+  try {
+    const getSelectText = (element) => {
+      const selectElement = ptwForm[element];
+      if (selectElement && selectElement.options) {
+        return selectElement.options[selectElement.selectedIndex].text;
+      }
+      return '';
+    };
+
+    const formData = {
+      requesterSignature: document.getElementById('requesterSignatureCanvas')?.toDataURL() || '',
+      issuerSignature: document.getElementById('issuerSignatureCanvas')?.toDataURL() || '',
+      ehsSignature: document.getElementById('ehsSignatureCanvas')?.toDataURL() || '',
+      contractorSupervisorSignature: document.getElementById('contractorSupervisorSignatureCanvas')?.toDataURL() || '',
+      status: 'Open',
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    // Iterate through all form elements and add them to formData
+    const elements = ptwForm.elements;
+    if (!elements) {
+      throw new Error('Form elements not found');
+    }
+
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      if (element.tagName === 'SELECT') {
+        formData[element.id] = getSelectText(element.id);
+      } else if (element.type === 'checkbox') {
+        if (!formData[element.name]) {
+          formData[element.name] = [];
+        }
+        if (element.checked) {
+          formData[element.name].push(element.value);
+        }
+      } else if (element.type !== 'button' && element.type !== 'submit') {
+        formData[element.id] = element.value;
+      }
+    }
+
+    const ptwNumber = formData.ptwNumber;
+
+    const docRef = db.collection('Confined Space PTW Issue').doc(ptwNumber);
+    await docRef.set(formData);
+
+    const captureSection = document.getElementById('capture-section');
+    if (!captureSection) {
+      throw new Error('Capture section element not found');
+    }
+
+    html2canvas(captureSection, { useCORS: true, scale: 2 }).then(async (canvas) => {
+      canvas.toBlob(async (blob) => {
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child(`confined_space_ptw_forms/${ptwNumber}.jpeg`);
+        await fileRef.put(blob);
+
+        const downloadURL = await fileRef.getDownloadURL();
+        await docRef.update({ formImageUrl: downloadURL });
+
+        ptwForm.reset();
+        hideLoading();
+        alert('Confined Space PTW successfully submitted with ID: ' + ptwNumber);
+
+        // Redirect to ptw_share.html with image URL
+        window.location.href = `ptw_share.html?imageUrl=${encodeURIComponent(downloadURL)}`;
+
+      }, 'image/jpeg', 0.5);
+    }).catch(error => {
+      console.error('Error capturing PTW form image: ', error);
+      hideLoading();
+      alert('Error capturing PTW form image: ' + error.message);
+    });
+  } catch (error) {
+    console.error('Error adding Confined Space PTW form data: ', error);
+    hideLoading();
+    alert('Error submitting Confined Space PTW: ' + error.message);
+  }
+}
+
+// Attach the event listener to the form submission
+document.getElementById('ptwForm').addEventListener('submit', saveConfinedSpacePTWFormData);
+
+//*******************************************************************************************************************
+
+// Initialize select2 for the general PTW number dropdown
+$(document).ready(function() {
+  $('#generalPtwNumber').select2({
+    placeholder: 'Select General PTW Number',
+    allowClear: true
+  });
+
+  // Set up the change event listener for generalPtwNumber
+  $('#generalPtwNumber').on('change', handleGeneralPtwNumberSelection);
+});
+
+function handleGeneralPtwNumberSelection() {
+  const selectedValue = $('#generalPtwNumber').val();
+  if (selectedValue) {
+     generateConfinedSpacePTWNumber();
+  }
+}
+
+// Call functions when document is ready
+document.addEventListener('DOMContentLoaded', function() {
+  populateGeneralPTWNumberSelect();
+});

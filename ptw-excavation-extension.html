@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extend Excavation Work Permit - PTW Management System</title>
+  <link rel="stylesheet" href="css/ptw-excavation-styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Logo Section -->
+    <img id="logoImage" src="img/logo.jpg" alt="TCG Lifesciences Logo"
+      style="display: block; margin: 0 auto; width: 200px; height: auto;">
+
+    <!-- Permit Selection Section -->
+    <div class="sel_section">
+      <h2>Select Permit</h2>
+      <div class="form-group">
+        <label for="ptwNumber">PTW Number:</label>
+        <select id="ptwNumber" name="ptwNumber" required>
+          <option value="">Select Permit Number</option>
+          <!-- Options will be dynamically populated -->
+        </select>
+      </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <div id="capture-section" class="container">
+      <header style="text-align: center; margin-bottom: 20px;">
+        <h1>TCG Lifesciences Pvt. Ltd.</h1>
+        <h2>EXTEND EXCAVATION WORK PERMIT</h2>
+      </header>
+
+      <main id="content">
+        <ol>
+          <li>This permit is required by W.B.F.R., 1968 Rule 64, Sch XVII, Part-II, Para 20.</li>
+          <li>This permit shall be issued by Responsible work In-charge head / designee. This permit is valid for the
+            time mentioned on the permit.</li>
+          <li>This permit shall be closed after completion / non-completion of work. (At the end of the day)</li>
+          <li>In case of fire alarm / siren, all work must immediately be stopped.</li>
+          <li>Job should be stopped in case of poor illumination level at the job site.</li>
+          <li>For open area activity, job should be stopped in case of rain and storm.</li>
+        </ol>
+
+        <!-- PTW Form -->
+        <form id="ptwForm">
+
+          <!-- Issued Permit Section -->
+          <div id="issuedPermitSection" class="bordered-section hidden">
+            <h2>Issued Permit Details</h2>
+            <div class="form-group">
+              <label for="generalPtwNumber">General PTW Number:</label>
+              <input type="text" id="generalPtwNumber" name="generalPtwNumber" readonly>
+            </div>
+            <div class="form-group">
+              <label for="issuedPtwNumber">PTW Number:</label>
+              <input type="text" id="issuedPtwNumber" name="issuedPtwNumber" readonly>
+            </div>
+            <div class="form-group">
+              <label for="issuedDate">Date:</label>
+              <input type="date" id="issuedDate" name="issuedDate" readonly>
+            </div>
+            <div class="form-group">
+              <label for="issuedTimeFrom">Issued Time From:</label>
+              <input type="time" id="issuedTimeFrom" name="issuedTimeFrom" readonly>
+            </div>
+            <div class="form-group">
+              <label for="issuedTimeTo">Issued Time To:</label>
+              <input type="time" id="issuedTimeTo" name="issuedTimeTo" readonly>
+            </div>
+            <div class="form-group">
+              <label for="issuedRequestingDepartment">Requesting Department/Section:</label>
+              <input type="text" id="issuedRequestingDepartment" name="issuedRequestingDepartment" readonly>
+            </div>
+            <div class="form-group">
+              <label for="jobDescription">Job Description</label>
+              <input type="text" id="jobDescription" name="jobDescription" required>
+            </div>
+            <div class="form-group">
+              <label for="issuedRequestingPersonnel">Permit issued to (Shift / Area in charge):</label>
+              <input type="text" id="issuedRequestingPersonnel" name="issuedRequestingPersonnel" readonly>
+            </div>
+            <div class="form-group">
+              <label for="issuedContractor">Name of Agency / Contractor:</label>
+              <input type="text" id="issuedContractor" name="issuedContractor" readonly>
+            </div>
+            <div class="form-group">
+              <label for="issuedContractorSupervisor">Contractor Supervisor Name:</label>
+              <input type="text" id="issuedContractorSupervisor" name="issuedContractorSupervisor" readonly>
+            </div>
+            <div class="form-group">
+              <label for="issuedIssuerName">Permit Issuer (Logged in User):</label>
+              <input type="text" id="issuedIssuerName" name="issuedIssuerName" readonly>
+            </div>
+            <button type="button" class="btn-extend" id="extendPermitBtn">Extend</button>
+          </div>
+
+          <!-- Extension Section -->
+          <div id="extensionSection" class="bordered-section hidden">
+            <h2>Extension Details</h2>
+            <div class="form-group">
+              <label for="extensionNumber">Extension Number:</label>
+              <input type="text" id="extensionNumber" name="extensionNumber" readonly>
+            </div>
+            <div class="form-group">
+              <label for="extensionDate">Extended on Date:</label>
+              <input type="date" id="extensionDate" name="extensionDate">
+            </div>
+            <div class="form-group">
+              <label for="extensionTimeFrom">From Time:</label>
+              <input type="time" id="extensionTimeFrom" name="extensionTimeFrom">
+            </div>
+            <div class="form-group">
+              <label for="extensionTimeTo">To Time:</label>
+              <input type="time" id="extensionTimeTo" name="extensionTimeTo">
+            </div>
+
+            <!-- Preventive Measures Section -->
+            <h4>Preventive Measures</h4>
+            <div class="form-group">
+              <table class="preventive-measures-table">
+                <thead>
+                  <tr>
+                    <th>Measures</th>
+                    <th>Yes</th>
+                    <th>No</th>
+                    <th>N/A</th>
+                    <th>Explanation / Remarks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Slope Bench Cutting done</td>
+                    <td><input type="radio" name="slopeBenchCutting" id="slopeBenchCuttingYes" value="yes"></td>
+                    <td><input type="radio" name="slopeBenchCutting" id="slopeBenchCuttingNo" value="no"></td>
+                    <td><input type="radio" name="slopeBenchCutting" id="slopeBenchCuttingNa" value="na"></td>
+                    <td><input type="text" id="slopeBenchCuttingRemarks" name="slopeBenchCuttingRemarks"></td>
+                  </tr>
+                  <tr>
+                    <td>Excavated earth kept 1mtr/Half of depth away from edge</td>
+                    <td><input type="radio" name="excavatedEarth" id="excavatedEarthYes" value="yes"></td>
+                    <td><input type="radio" name="excavatedEarth" id="excavatedEarthNo" value="no"></td>
+                    <td><input type="radio" name="excavatedEarth" id="excavatedEarthNa" value="na"></td>
+                    <td><input type="text" id="excavatedEarthRemarks" name="excavatedEarthRemarks"></td>
+                  </tr>
+                  <tr>
+                    <td>Hard barricading to be done (Barricading)</td>
+                    <td><input type="radio" name="hardBarricading" id="hardBarricadingYes" value="yes"></td>
+                    <td><input type="radio" name="hardBarricading" id="hardBarricadingNo" value="no"></td>
+                    <td><input type="radio" name="hardBarricading" id="hardBarricadingNa" value="na"></td>
+                    <td><input type="text" id="hardBarricadingRemarks" name="hardBarricadingRemarks"></td>
+                  </tr>
+                  <tr>
+                    <td>Soft barricading to be done (Barricading)</td>
+                    <td><input type="radio" name="softBarricading" id="softBarricadingYes" value="yes"></td>
+                    <td><input type="radio" name="softBarricading" id="softBarricadingNo" value="no"></td>
+                    <td><input type="radio" name="softBarricading" id="softBarricadingNa" value="na"></td>
+                    <td><input type="text" id="softBarricadingRemarks" name="softBarricadingRemarks"></td>
+                  </tr>
+                  <tr>
+                    <td>Warning signs / light signals to be done</td>
+                    <td><input type="radio" name="warningSigns" id="warningSignsYes" value="yes"></td>
+                    <td><input type="radio" name="warningSigns" id="warningSignsNo" value="no"></td>
+                    <td><input type="radio" name="warningSigns" id="warningSignsNa" value="na"></td>
+                    <td><input type="text" id="warningSignsRemarks" name="warningSignsRemarks"></td>
+                  </tr>
+                  <tr>
+                    <td>Access/Escape route to be provided</td>
+                    <td><input type="radio" name="accessEscapeRoute" id="accessEscapeRouteYes" value="yes"></td>
+                    <td><input type="radio" name="accessEscapeRoute" id="accessEscapeRouteNo" value="no"></td>
+                    <td><input type="radio" name="accessEscapeRoute" id="accessEscapeRouteNa" value="na"></td>
+                    <td><input type="text" id="accessEscapeRouteRemarks" name="accessEscapeRouteRemarks"></td>
+                  </tr>
+                  <tr>
+                    <td>Road blockage to be done</td>
+                    <td><input type="radio" name="roadBlockage" id="roadBlockageYes" value="yes"></td>
+                    <td><input type="radio" name="roadBlockage" id="roadBlockageNo" value="no"></td>
+                    <td><input type="radio" name="roadBlockage" id="roadBlockageNa" value="na"></td>
+                    <td><input type="text" id="roadBlockageRemarks" name="roadBlockageRemarks"></td>
+                  </tr>
+                  <tr>
+                    <td>Shoring done</td>
+                    <td><input type="radio" name="shoringDone" id="shoringDoneYes" value="yes"></td>
+                    <td><input type="radio" name="shoringDone" id="shoringDoneNo" value="no"></td>
+                    <td><input type="radio" name="shoringDone" id="shoringDoneNa" value="na"></td>
+                    <td><input type="text" id="shoringDoneRemarks" name="shoringDoneRemarks"></td>
+                  </tr>
+                  <tr>
+                    <td>Any others</td>
+                    <td><input type="radio" name="anyOthers" id="anyOthersYes" value="yes"></td>
+                    <td><input type="radio" name="anyOthers" id="anyOthersNo" value="no"></td>
+                    <td><input type="radio" name="anyOthers" id="anyOthersNa" value="na"></td>
+                    <td><input type="text" id="anyOthersRemarks" name="anyOthersRemarks"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Signature Section -->
+            <div class="form-group">
+              <label for="extensionRequesterSignatureSelect">Select Permit Requester:</label>
+              <select id="extensionRequesterSignatureSelect" name="extensionRequesterSignatureSelect" required>
+                <option value="">Select Name</option>
+              </select>
+              <label for="extensionRequesterSignature">Signature of Permit Requester:</label>
+              <canvas id="extensionRequesterSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('extensionRequesterSignatureCanvas')">Clear</button>
+            </div>
+            <div class="form-group">
+              <label for="extensionIssuerName">Permit Issuer (Logged in User):</label>
+              <input type="text" id="extensionIssuerName" name="extensionIssuerName" readonly>
+              <label for="extensionIssuerSignature">Signature of Permit Issuer:</label>
+              <canvas id="extensionIssuerSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('extensionIssuerSignatureCanvas')">Clear</button>
+            </div>
+            <div class="form-group">
+              <label for="extensionEhsSignatureSelect">Select EHS Department Head/Designee:</label>
+              <select id="extensionEhsSignatureSelect" name="extensionEhsSignatureSelect" required>
+                <option value="">Select Name</option>
+              </select>
+              <label for="extensionEhsSignature">Signature of EHS Department Head/Designee:</label>
+              <canvas id="extensionEhsSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('extensionEhsSignatureCanvas')">Clear</button>
+            </div>
+            <div class="form-group">
+              <label for="extensionContractorSupervisorSelect">Select Contractor Supervisor:</label>
+              <select id="extensionContractorSupervisorSelect" name="extensionContractorSupervisorSelect" required>
+                <option value="">Select Supervisor</option>
+              </select>
+              <label for="extensionContractorSupervisorSignature">Signature of Contractor Supervisor:</label>
+              <canvas id="extensionContractorSupervisorSignatureCanvas" class="signature-canvas"></canvas>
+              <button type="button" class="btn-clear" onclick="clearCanvas('extensionContractorSupervisorSignatureCanvas')">Clear</button>
+            </div>
+          </div>
+	</div>
+          <!-- Action Buttons -->
+          <button type="submit">Submit PTW</button>
+          <button type="button" onclick="location.href='ptw-extension-dashboard.html'">Back</button>
+        </form>
+      </main>
+    
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay">
+      <p>Please wait, saving your document...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/populateForm_extension.js"></script>
+    <script src="js/signatureCanvas_extension.js"></script>
+    <script src="js/ptw-excavation-extension.js"></script>
+  </div>
+</body>
+
+</html>

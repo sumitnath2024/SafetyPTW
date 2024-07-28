@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue PTW Dashboard - PTW Management System</title>
+    <link rel="stylesheet" href="css/issue-dashboard-styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Issue Permit To Work</h1>               
+            </div>
+        </header>
+        <main>
+            <div class="card general" onclick="window.location.href='ptw-general-issue.html'">
+                <h2>General PTW</h2>
+                <p>Click to issue a General PTW</p>
+            </div>
+            <div class="card height" onclick="window.location.href='ptw-height-issue.html'">
+                <h2>Height PTW</h2>
+                <p>Click to issue a Height PTW</p>
+            </div>
+            <div class="card confined" onclick="window.location.href='ptw-confined-issue.html'">
+                <h2>Confined Space PTW</h2>
+                <p>Click to issue a Confined Space PTW</p>
+            </div>
+            <div class="card electrical" onclick="window.location.href='ptw-electrical-issue.html'">
+                <h2>Electrical PTW</h2>
+                <p>Click to issue an Electrical PTW</p>
+            </div>
+            <div class="card hot" onclick="window.location.href='ptw-hot-issue.html'">
+                <h2>Hot Work PTW</h2>
+                <p>Click to issue a Hot Work PTW</p>
+            </div>
+            <div class="card excavation" onclick="window.location.href='ptw-excavation-issue.html'">
+                <h2>Excavation PTW</h2>
+                <p>Click to issue an Excavation PTW</p>
+            </div>
+	    <div class="card logout" onclick="logout()">
+                <h2>Logout</h2>
+                <p>Click to logout</p>
+            </div>
+	    <div class="card back" onclick="window.location.href='dashboard.html'">
+    		<h2>Back</h2>
+    	        <p>Click to go Back</p>
+	    </div>
+
+
+        </div>
+        </main>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <script src="js/firebase-config.js"></script> <!-- Ensure this is loaded first -->
+    <script>
+        function loadPage(url) {
+            document.getElementById('contentFrame').src = url;
+            document.getElementById('navMenu').classList.remove('open');
+        }
+
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('open');
+        }       
+
+        async function logout() {
+            await firebase.auth().signOut();
+            localStorage.removeItem('userUID');
+            localStorage.removeItem('rememberMe'); // Add this line
+            localStorage.removeItem('email'); // Add this line
+            localStorage.removeItem('password'); // Add this line
+            window.location.href = 'login.html';
+        }
+
+        
+    </script>
+</body>
+</html>
