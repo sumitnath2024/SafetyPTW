@@ -37,16 +37,18 @@
         <div id="companiesList">
           <h2>Companies</h2>
           <input type="text" id="companySearch" placeholder="Search companies">
-          <table>
-            <thead>
-              <tr>
-                <th>Company Name</th>
-                <th>Company Address</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="companies"></tbody>
-          </table>
+          <div style="overflow-x: auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Company Name</th>
+                  <th>Company Address</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="companies"></tbody>
+            </table>
+          </div>
         </div>
       </section>
       
@@ -81,23 +83,25 @@
         </form>
         <div id="supervisorsList">
           <h2>Supervisors</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Supervisor Name</th>
-                <th>Age</th>
-                <th>Address</th>
-                <th>Identity Proof No</th>
-                <th>Phone Number</th>
-                <th>Company</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="supervisors"></tbody>
-          </table>
+          <div style="overflow-x: auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Supervisor Name</th>
+                  <th>Age</th>
+                  <th>Address</th>
+                  <th>Identity Proof No</th>
+                  <th>Phone Number</th>
+                  <th>Company</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="supervisors"></tbody>
+            </table>
+          </div>
         </div>
       </section>
-     <button type="button" class="add-btn"  onclick="location.href='dashboard.html'">Back</button>
+      <button type="button" class="add-btn" onclick="location.href='dashboard.html'">Back</button>
     </main>
   </div>
 
